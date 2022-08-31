@@ -133,7 +133,6 @@ class UserVisit(models.Model):
         """Generate MD5 hash used to identify duplicate visits."""
         h = hashlib.md5(str(self.user.id).encode())  # noqa: S303
         h.update(self.date.isoformat().encode())
-        h.update(self.session_key.encode())
         h.update(self.remote_addr.encode())
         h.update(self.ua_string.encode())
         return h
